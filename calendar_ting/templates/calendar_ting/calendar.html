@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Calendar - Bookalot
+{% endblock %}
+
+{% block pagetitle %}
+  Calendar
+{% endblock %}
+
+{% block pagedescription %}
+  Heres your calendar
+{% endblock %}
+
+{% block content %}
+
+<a href="{% url 'calendar_ting:newevent' %}" class="btn btn-light btn-sm mb-3">New event</a>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Organizer</th>
+      <th scope="col">Subject</th>
+      <th scope="col">Start</th>
+      <th scope="col">End</th>
+      <th scope="col">View</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    {% if events %}
+      {% for event in events %}
+        <tr>
+          <td>{{ event.organizer.emailAddress.name }}</td>
+          <td>{{ event.subject }}</td>
+          <td>{{ event.start.dateTime|date:'n/d/Y g:i A' }}</td>
+          <td>{{ event.end.dateTime|date:'n/d/Y g:i A' }}</td>
+          <td><a href="{% url 'calendar_ting:event' eid=event.id %}"> View meeting </a> </td>
+        </tr>
+      {% endfor %}
+    {% endif %}
+  </tbody>
+</table>
+
+{% endblock %}
+
+

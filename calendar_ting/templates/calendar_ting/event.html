@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Home - Bookalot
+{% endblock %}
+
+{% block pagetitle %}
+  New event
+{% endblock %}
+
+{% block pagedescription %}
+  Home page
+{% endblock %}
+
+{% block content %}
+
+<p>{{event.start.dateTime}}</p>
+<p>{{event.end.dateTime}}</p>
+<p>{{event.subject}}</p>
+<p>{{event.organizer.emailAddress.name}}</p>
+{% for attendee in event.attendees %}
+  <p>{{attendee.emailAddress.name}},{{attendee.emailAddress.address}}</p>
+{% endfor %}
+ <p>{{event.location}}</p>
+ <p>{{event}}</p>
+ <p>{{user}}</p>
+
+{% endblock %}
+
+
+
